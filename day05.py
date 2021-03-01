@@ -26,7 +26,6 @@ def duplicateEntries(data):
             return 1
     return -1
 
-
 def analyseData(data):
     vowelCount = len(re.findall('a|e|i|o|u', data))
     duplicateCount = len(re.findall(r"([a-z])\1", data))
@@ -34,7 +33,6 @@ def analyseData(data):
     part2part1 = duplicateEntries(data)
     part2DuplicateCount = len(re.findall(r"([a-z]).\1", data))
     return vowelCount, duplicateCount, naughtyCount, part2part1, part2DuplicateCount
-
 
 answer = main()
 print("Answer 1")
