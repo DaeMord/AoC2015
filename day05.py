@@ -2,19 +2,19 @@
 
 from AoC import inputData
 import re
+import time
+
+start_time = time.time()
 
 dataInput = inputData('data/day05.txt')
-#dataInput = ['ugknbfddgicrmopn', 'aaa', 'jchzalrnumimnmhp', 'haegwjzuvuyypxyu', 'dvszwmarrgswjxmb']
-#dataInput = ['qjhvhtzxzqqjkmpb', 'xxyxx', 'uurcxstgmygtbstg', 'ieodomkazucvgmuy']
 
 def main():
     nice = 0
     nice2 = 0
     for i in dataInput:
-        data = analyseData(i)
-        if data[2] == 0 and data[1] > 0 and data[0] >= 3:
+        if len(re.findall('ab|cd|pq|xy', i)) == 0 and len(re.findall(r"([a-z])\1", i)) > 0 and len(re.findall('a|e|i|o|u', i)) >= 3:
             nice += 1
-        if data[3] == 1 and data[4] >= 1:
+        if duplicateEntries(i) == 1 and len(re.findall(r"([a-z]).\1", i)) >= 1:
             nice2 += 1
     return nice, nice2
 
@@ -26,16 +26,10 @@ def duplicateEntries(data):
             return 1
     return -1
 
-def analyseData(data):
-    vowelCount = len(re.findall('a|e|i|o|u', data))
-    duplicateCount = len(re.findall(r"([a-z])\1", data))
-    naughtyCount = len(re.findall('ab|cd|pq|xy', data))
-    part2part1 = duplicateEntries(data)
-    part2DuplicateCount = len(re.findall(r"([a-z]).\1", data))
-    return vowelCount, duplicateCount, naughtyCount, part2part1, part2DuplicateCount
-
 answer = main()
 print("Answer 1")
 print(answer[0])
 print("Answer 2")
 print(answer[1])
+
+print('Took', round(time.time() - start_time,2), 'seconds to complete')
