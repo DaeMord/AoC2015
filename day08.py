@@ -2,7 +2,6 @@
 
 from AoC import inputData
 import time
-import codecs
 
 start_time = time.time()
 
@@ -14,25 +13,7 @@ def main():
     dataProcessed = 0
     for data in dataInput:
         dataRaw += len(data)
-        outputData = ""
-        i = 0
-        while i < (len(data)):
-            if data[i] == '"':
-                i += 1
-            elif data[i] == "\\":
-                if data[i+1] == '"':
-                    outputData = outputData + (data[i+1])
-                    i += 2
-                elif data[i+1] == "\\":
-                    outputData = outputData + (data[i+1])
-                    i += 2
-                elif data[i+1] == "x":
-                    outputData = outputData + codecs.decode(data[i:i+4], 'unicode_escape')
-                    i += 4
-            else:
-                outputData = outputData + data[i]
-                i += 1
-        dataProcessed += len(outputData)
+        dataProcessed += len(eval(data))
     return dataRaw - dataProcessed
 
 def main2():
@@ -40,20 +21,10 @@ def main2():
     dataProcessed = 0
     for data in dataInput:
         dataRaw += len(data)
-        outputData = '"'
-        i = 0
-        while i < (len(data)):
-            if data[i] == '"':
-                outputData = outputData + '\\"'
-                i += 1
-            elif data[i] == "\\":
-                outputData = outputData + '\\' + '\\'
-                i += 1
-            else:
-                outputData = outputData + data[i]
-                i += 1
-        outputData = outputData + '"'
+        outputData = data.replace('\\', '\\\\')
+        outputData = outputData.replace('"', '\\"')
         dataProcessed += len(outputData)
+        dataProcessed += 2
     return dataProcessed - dataRaw
 
 print("Answer 1")
