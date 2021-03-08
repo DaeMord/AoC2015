@@ -73,3 +73,4 @@ print("Answer 2")
 print(answer2)
 
 print('Took', round(time.time() - start_time,2), 'seconds to complete')
+#7.8 seconds to run
