@@ -50,9 +50,7 @@ def main(data):
         output += array[i[-1], i[0]]
         outputDict[i] = output
         output = 0
-    #reverseBrute = dict(map(reversed, outputDict.items()))
     permutation = max(outputDict, key=outputDict.get)
-    #print(permutation)
     return outputDict[permutation]
 
 def modifyData(data):
