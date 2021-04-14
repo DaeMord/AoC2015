@@ -31,7 +31,6 @@ def main(dataInp, val):
                 data[rName][7] += 1
     return max(list(zip(*data.values()))[6]), max(list(zip(*data.values()))[7])
 
-#data = assembleData()
 answer1 = main(dataInput, 2503)
 
 print("Answer 1")
