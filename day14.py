@@ -13,22 +13,10 @@ name = inputData('data/day14.txt', t="rex", r='^(\S+)')
 def assembleData():
     outputArray = {}
     for x in range(len(name)):
-        outputArray[name[x][0]] = dataInput[x]
+        outputArray[name[x][0]] = [int(dataInput[x][0]), int(dataInput[x][1]), int(dataInput[x][2]), 0, 0, 0, 0, 0]
     return outputArray
 
-def main(data,valToCheck):
-    distAtX = {}
-    newArray = {}
-    for i in data:
-        rName = i
-        rSpeed = int(data[i][0])
-        rDuration = int(data[i][1])
-        rRest = int(data[i][2])
-        newArray[rName] = [rSpeed, rDuration, rRest, 0, 0, 0, 0, 0]
-    newDistance = distanceAtX2(newArray, valToCheck)
-    return newDistance
-
-def distanceAtX2(data,val):
+def main(data, val):
     #0speed, 1duration, 2rest, 3resting, 4moving, 5restval, 6outputVal, 7points
     for i in range(val):
         for rName in data:
@@ -47,25 +35,6 @@ def distanceAtX2(data,val):
             if data[rName][6] == max(list(zip(*data.values()))[6]):
                 data[rName][7] += 1
     return max(list(zip(*data.values()))[6]), max(list(zip(*data.values()))[7])
-
-def distanceAtX(speed,duration,rest,val):
-    resting = 0
-    moving = 0
-    restval = 0
-    outPutVal = 0
-    for i in range(val):
-        if resting == 0:
-            moving += 1
-            outPutVal += speed
-            if moving >= duration:
-                resting = 1
-                moving = 0
-        elif resting == 1:
-            restval += 1
-            if restval >= rest:
-                resting = 0
-                restval = 0
-    return outPutVal
 
 data = assembleData()
 answer1 = main(data, 2503)
