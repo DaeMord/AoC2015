@@ -5,18 +5,13 @@ import time
 
 start_time = time.time()
 
-dataInput = inputData('data/day14.txt', t="rfa", r='(\d+)')
-name = inputData('data/day14.txt', t="rex", r='^(\S+)')
-#dataInput = inputData('data/test14.txt', t="rfa", r='(\d+)')
-#name = inputData('data/test14.txt', t="rex", r='^(\S+)')
+dataInput = inputData('data/day14.txt', t="rex", r='(\w+).+?(\d+).+?(\d+).+?(\d+).+?')
+#dataInput = inputData('data/test14.txt', t="rex", r='(\w+).+?(\d+).+?(\d+).+?(\d+).+?')
 
-def assembleData():
-    outputArray = {}
-    for x in range(len(name)):
-        outputArray[name[x][0]] = [int(dataInput[x][0]), int(dataInput[x][1]), int(dataInput[x][2]), 0, 0, 0, 0, 0]
-    return outputArray
-
-def main(data, val):
+def main(dataInp, val):
+    data = {}
+    for i in dataInp:
+        data[i[0]] = [int(i[1]), int(i[2]), int(i[3]), 0, 0, 0, 0, 0]
     #0speed, 1duration, 2rest, 3resting, 4moving, 5restval, 6outputVal, 7points
     for i in range(val):
         for rName in data:
@@ -36,8 +31,8 @@ def main(data, val):
                 data[rName][7] += 1
     return max(list(zip(*data.values()))[6]), max(list(zip(*data.values()))[7])
 
-data = assembleData()
-answer1 = main(data, 2503)
+#data = assembleData()
+answer1 = main(dataInput, 2503)
 
 print("Answer 1")
 print(answer1[0])
