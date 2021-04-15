@@ -1,4 +1,4 @@
-#https://adventofcode.com/2015/day/16
+#https://adventofcode.com/2015/day/17
 
 from AoC import inputData
 import time
@@ -10,11 +10,11 @@ dataInput = inputData('data/day17.txt', t="int")
 
 def main(valueToReach, data):
     dataArray = [z for i in range(len(data)) for z in itertools.combinations(data, i) if sum(z) == valueToReach]
-    ans2 = len([x for x in dataArray if len(x) == min([len(x) for x in dataArray])])
     ans1 = len(dataArray)
+    ans2 = len([x for x in dataArray if len(x) == min([len(x) for x in dataArray])])
     return ans1, ans2
 
-answer1 = main(100, dataInput)
+answer1 = main(150, dataInput)
 
 print("Answer 1")
 print(answer1[0])
