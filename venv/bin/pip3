@@ -1,4 +1,4 @@
-#!/home/daemord/dev/AoC2015/venv/bin/python
+#!/home/daemord/pDev/AoC2015/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

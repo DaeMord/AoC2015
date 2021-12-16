@@ -1,6 +1,6 @@
-#https://adventofcode.com/2015/day/17
+#https://adventofcode.com/2015/day/18
 
-from AoC import inputData, printArray
+from AoC import inputData
 import time
 
 start_time = time.time()
